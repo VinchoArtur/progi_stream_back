@@ -4,7 +4,7 @@ import { User } from '../../../entities/users/user.entity';
 export class UserSubscriber implements EntitySubscriberInterface {
 
   constructor(private dataSource: DataSource) {
-    dataSource.subscribers.push(this);
+    // dataSource.subscribers.push(this);
   }
 
   listenTo(): Function | string {
