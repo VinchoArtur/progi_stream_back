@@ -50,7 +50,6 @@ export class AuthController {
   @Post('login')
   @UsePipes(new ValidationPipe())
   async loginUser(@Body() userCredentials: UserCredentialDTO, @Res() res: Response) {
-    console.log(userCredentials);
     const tokenOrError = await this.authService.login(userCredentials);
     if (tokenOrError instanceof UnauthorizedException) {
       return res.sendStatus(HttpStatus.UNAUTHORIZED);
