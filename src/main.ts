@@ -2,8 +2,6 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ExpressAdapter } from '@nestjs/platform-express';
 import * as express from 'express';
-import * as http from 'http';
-import { IoAdapter } from '@nestjs/platform-socket.io';
 
 async function bootstrap(): Promise<void> {
   const server = express();
@@ -11,10 +9,11 @@ async function bootstrap(): Promise<void> {
 
   // Настраиваем CORS для HTTP-запросов
   app.enableCors({
-    origin: "*", // Разрешаем запросы с любого источника
-    methods: ["GET", "POST"], // Разрешаем только методы GET и POST
+    origin: '*', // Вы можете указать конкретные домены вместо '*'
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
+    allowedHeaders: 'Origin, X-Requested-With, Content-Type, Accept, Authorization',
   });
+  await app.listen(3000);
 
-  await app.listen(3001);
 }
 bootstrap();
